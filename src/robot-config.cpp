@@ -4,15 +4,50 @@ using namespace vex;
 using signature = vision::signature;
 using code = vision::code;
 
-// A global instance of brain used for printing to the V5 Brain screen.
 brain  Brain;
 
-//The motor constructor takes motors as (port, ratio, reversed), so for example
-//motor LeftFront = motor(PORT1, ratio6_1, false);
+motor RF = motor(PORT20,ratio6_1,true);
+motor RM = motor(PORT19,ratio6_1,true);
+motor RE = motor(PORT18,ratio6_1,true);
 
-//Add your devices below, and don't forget to do the same in robot-config.h:
+motor LF = motor(PORT20,ratio6_1,true);
+motor LM = motor(PORT19,ratio6_1,true);
+motor LE = motor(PORT18,ratio6_1,true);
 
+motor IN = motor(PORT20,ratio6_1,true);
+motor HT = motor(PORT19,ratio6_1,true);
+
+motor LB = motor(PORT18,ratio6_1,true);
+
+digital_out CL = digital_out(Brain.ThreeWirePort.A);
+
+rotation Rotation = rotation(PORT2);
+rotation Odom = rotation(PORT2);
+
+controller Controller1 = controller();
+
+inertial Gyro = inertial(PORT1);
 
 void vexcodeInit( void ) {
-  // nothing to initialize
+  Gyro.calibrate();
+}
+
+void elegantCalibrate ( void ) {
+
+  Controller1.Screen.clearScreen();
+  Controller1.Screen.setCursor(1,1);
+  Gyro.calibrate();
+  int WAIT_TIME = 5000; //DO NOT CHANGE THIS VALUE
+  wait(WAIT_TIME,msec);
+  int foo = 0;
+  while(foo < 5000){
+    Controller1.Screen.print(Gyro.angle());
+    Controller1.Screen.newLine();
+    Controller1.Screen.print(Gyro.heading());
+    Controller1.Screen.newLine();
+    Controller1.Screen.print(Gyro.acceleration(yaxis)); 
+    
+    wait(10,msec);
+    foo += 10;
+  }
 }
