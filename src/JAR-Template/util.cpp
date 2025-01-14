@@ -218,3 +218,19 @@ float clamp_min_voltage(float drive_output, float drive_min_voltage){
   }
   return drive_output;
 }
+
+/**
+ * 
+ * 
+ * @param value1
+ * @param value2
+ * @return difference between two floats
+ */
+
+float get_difference(float value1, float value2){
+  if(value1 > value2){
+    return value1-value2;
+  }else{
+    return value2-value1;
+  }
+}

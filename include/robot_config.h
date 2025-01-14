@@ -13,6 +13,8 @@ extern pros::Controller MASTER;
 
 extern pros::Imu IMU;
 
+extern pros::Rotation ROT;
+
 void set_brake_modes(void);
 
 void calibrate(void);
