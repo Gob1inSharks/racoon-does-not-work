@@ -1,4 +1,5 @@
-#include "vex.h"
+#include "JAR-Template/util.h"
+#include <math.h>
 
 /**
  * Converts an angle to an equivalent one in the range [0, 360).

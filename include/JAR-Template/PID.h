@@ -1,5 +1,4 @@
 #pragma once
-#include "vex.h"
 
 /**
  * General-use PID class for drivetrains. It includes both

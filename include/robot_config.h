@@ -1,0 +1,18 @@
+#include "main.h"
+
+extern pros::MotorGroup LM;
+extern pros::MotorGroup RM;
+
+extern pros::Motor IN;
+
+extern pros::Motor LB;
+
+extern pros::ADIDigitalOut CL;
+
+extern pros::Controller MASTER;
+
+extern pros::Imu IMU;
+
+void set_brake_modes(void);
+
+void calibrate(void);
