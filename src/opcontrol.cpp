@@ -4,17 +4,19 @@
 #define ANGLE_MIN_THRESHOLD 0.
 #define ANGLE_MAX_THRESHOLD 250.
 
-#define INTAKE_POSITION 30.
-#define GUARD_POSITION 80.
-#define EJECT_POSITION 105.
+#define DEFAULT_POSITION 179
 
-#define LADYBROWN_KP 1.
-#define LADYBROWN_KI 0.001
-#define LADYBROWN_KD 3.
+#define INTAKE_POSITION 20 + DEFAULT_POSITION
+#define GUARD_POSITION 86 + DEFAULT_POSITION
+#define EJECT_POSITION 146 + DEFAULT_POSITION
+
+#define LADYBROWN_KP .35
+#define LADYBROWN_KI 0
+#define LADYBROWN_KD .13
 #define LADYBROWN_STARTI 0
 
 #define LADYBROWN_SETTLE_ERROR 1
-#define LADYBROWN_SETTLE_TIME 100
+#define LADYBROWN_SETTLE_TIME 1000
 #define LADYBROWN_TIMEOUT 1000
 
 int ladybrown_macro_angle = 0;
@@ -26,15 +28,14 @@ void ladybrown_macro(void* param){
 
 		if(ladybrown_macro_active){
 
+			float current_position = (double)ROT.get_position()/100;
 			int desired_position = ladybrown_macro_angle;
 
-			float current_position = (double)ROT.get_position()/100;
-
-			PID turnPID(current_position-INTAKE_POSITION,LADYBROWN_KP,LADYBROWN_KI, LADYBROWN_KD, LADYBROWN_STARTI, LADYBROWN_SETTLE_ERROR, LADYBROWN_SETTLE_TIME, LADYBROWN_TIMEOUT);
+			PID turnPID(reduce_negative_180_to_180(current_position-desired_position),LADYBROWN_KP,LADYBROWN_KI, LADYBROWN_KD, LADYBROWN_STARTI, LADYBROWN_SETTLE_ERROR, LADYBROWN_SETTLE_TIME, LADYBROWN_TIMEOUT);
 			while( !turnPID.is_settled() ){
 	
 				float current_position = (double)ROT.get_position()/100;
-    			float error = current_position-INTAKE_POSITION;
+    			float error = reduce_negative_180_to_180(current_position-desired_position);
     			float output = turnPID.compute(error);
 
     			output = clamp(output, -127, 127);
@@ -45,6 +46,7 @@ void ladybrown_macro(void* param){
 
 			ladybrown_macro_active = false;
 		}
+		pros::delay(10);
 	}
 }
 
