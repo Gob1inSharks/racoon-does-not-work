@@ -4,7 +4,7 @@ pros::MotorGroup LM ({-11,-12,13});
 pros::MotorGroup RM ({-18,19,20});
 
 pros::Motor IN(15);
-pros::Motor LB(-16);
+pros::Motor LB(16);
 
 pros::ADIDigitalOut CL('A');
 
