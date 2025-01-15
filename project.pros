@@ -1,7 +1,7 @@
 {
   "py/object": "pros.conductor.project.Project",
   "py/state": {
-    "project_name": "Racoon Does Not Work",
+    "project_name": "Racoon Doesnt Work",
     "target": "v5",
     "templates": {
       "kernel": {
@@ -258,7 +258,7 @@
       "description": "2059R's code",
       "after": "screen",
       "icon": "alien",
-      "slot": 3
+      "slot": 4
     },
     "use_early_access": false
   }
