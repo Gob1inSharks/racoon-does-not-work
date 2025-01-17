@@ -11,6 +11,7 @@ void on_center_button() {
 }
 
 void initialize() {
+	set_motors_to_default();
 	calibrate();
 }
 

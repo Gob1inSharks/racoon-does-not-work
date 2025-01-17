@@ -42,11 +42,13 @@
 //#include "okapi/api.hpp"
 
 #include "robot_config.h"
+#include <string>
 #include "math.h"
 #include "JAR-Template/odom.h"
 #include "JAR-Template/PID.h"
 #include "JAR-Template/util.h"
 
+#include "Racoons/chassis.h"
 #include "Racoons/ladybrown.h"
 
 /**

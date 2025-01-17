@@ -15,6 +15,6 @@ extern pros::Imu IMU;
 
 extern pros::Rotation ROT;
 
-void set_brake_modes(void);
+void set_motors_to_default(void);
 
 void calibrate(void);
